@@ -17,13 +17,13 @@
               (.listener (reify DirectoryChangeListener
                            (^void onEvent [this ^DirectoryChangeEvent event]
                             (on-event (event->data event)))))
+              (.fileHashing false)
               (.build))]
     (.watchAsync w)
     w))
 
 (comment
   (def dir "/tmp/d")
-  (def events (atom []))
   (def wat (watch! dir #(println (pr-str %))))
   ,,,
   (.close wat)
